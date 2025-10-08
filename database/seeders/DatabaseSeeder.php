@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Eloquent\Factories\Factory; // importar la clase Factory
+use Illuminate\Support\Facades\Hash; // Para hashear contraseñas
+use Illuminate\Support\Str; // Para generar cadenas aleatorias
+
 use App\Models\Categorias;
 use App\Models\Comentarios;
 use App\Models\Destinos;
@@ -26,8 +30,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
         User::factory(29)->create();
-
-
         Categorias::factory(10)->create();
         Comentarios::factory(100)->create();
         Paquetes::factory(40)->create();
