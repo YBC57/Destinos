@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('destinos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('paquetes_id');
+            $table->foreign('paquetes_id')->references('id')->on('paquetes')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('nombre');
+            $table->string('descripcion');
+            $table->string('ubicacion');
+            $table->double('precio');
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
+            $table->string('imagen')->nullable;
             $table->timestamps();
         });
     }

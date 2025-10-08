@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('comentarios', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('destinos_id');
+            $table->foreign('destinos_id')->references('id')->on('destinos')->onDelete('cascade');
+            $table->string('comentario');
             $table->timestamps();
         });
     }
