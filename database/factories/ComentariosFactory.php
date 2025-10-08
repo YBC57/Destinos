@@ -17,7 +17,7 @@ class ComentariosFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nombre' => ucfirst(fake()->word()),//Nombre del Comentarios, ucfirst para que la primera letra sea mayuscula
         ];
     }
 }

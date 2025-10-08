@@ -17,7 +17,7 @@ class DestinoPaqueteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nombre' => ucfirst(fake()->word()),//
         ];
     }
 }

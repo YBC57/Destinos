@@ -17,7 +17,9 @@ class PaquetesFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nombre' => fake()->text(),//
+            'descripcion' => fake()->text(),
+            'precio' => fake()->randomDigit(),
         ];
     }
 }

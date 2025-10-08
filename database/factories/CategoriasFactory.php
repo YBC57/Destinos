@@ -17,7 +17,7 @@ class CategoriasFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nombre' => ucfirst(fake()->word()), // Nombre de la categoria, ucfirst para que la primera letra sea mayuscula
         ];
     }
 }

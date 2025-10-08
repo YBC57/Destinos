@@ -18,6 +18,10 @@ class ReservacionesFactory extends Factory
     {
         return [
             //
+            'cantidad' => fake()->random_int(),//
+            'fecha_reserva' => fake()->date(),
+            'total' => fake()->randomDigit(),
+
         ];
     }
 }
