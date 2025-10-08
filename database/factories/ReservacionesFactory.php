@@ -17,11 +17,12 @@ class ReservacionesFactory extends Factory
     public function definition(): array
     {
         return [
-            //
-            'cantidad' => fake()->random_int(),//
-            'fecha_reserva' => fake()->date(),
-            'total' => fake()->randomDigit(),
+    'user_id' => \App\Models\User::factory(),       // si necesitas
+    'destino_id' => \App\Models\Destinos::factory(), // crea un destino y toma su id
+    'cantidad' => fake()->numberBetween(1, 10),
+    'fecha_reserva' => fake()->dateTimeBetween('now', '+1 year')->format('Y-m-d'),
+    'total' => fake()->numberBetween(100, 1000),
+];
 
-        ];
     }
 }

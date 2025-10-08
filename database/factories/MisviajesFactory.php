@@ -17,7 +17,10 @@ class MisviajesFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre' => ucfirst(fake()->word()),//
-        ];
+    'user_id' => \App\Models\User::factory(),         // si también necesitas user_id
+    'destino_id' => \App\Models\Destinos::factory(),   // crea un destino y toma su id
+    'estado' => ucfirst(fake()->word()),
+];
+
     }
 }

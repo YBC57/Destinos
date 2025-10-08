@@ -21,7 +21,7 @@ class DestinosFactory extends Factory
             'descripcion' => fake()->text(), // text genera un texto aleatorio
             'ubicacion' => fake()->text(), 
             'precio' => fake()->randomDigit(), 
-            'fecha_inicio' => fake()->randomDigit(),
+            'fecha_inicio' => fake()->date(),
             'fecha_fin' => fake()->date(),
             'imagen' => fake()->imageUrl(640, 480), // imageUrl genera una URL de imagen aleatoria//
         

@@ -16,8 +16,12 @@ class ComentariosFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            'nombre' => ucfirst(fake()->word()),//Nombre del Comentarios, ucfirst para que la primera letra sea mayuscula
-        ];
+
+    return [
+    'user_id' => \App\Models\User::factory(),        // genera un usuario y asigna su id
+    //'destino_id' => \App\Models\Destinos::factory(),  // genera un destino y asigna su id
+    'comentario' => ucfirst(fake()->word()),         // tu comentario aleatorio
+];
+
     }
 }
