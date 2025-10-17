@@ -9,4 +9,7 @@ class Misviajes extends Model
 {
     /** @use HasFactory<\Database\Factories\MisviajesFactory> */
     use HasFactory;
+    public function misviajes(){
+        return $this->belongsToMany(misviajes::class);
+    }
 }

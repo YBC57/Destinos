@@ -9,4 +9,8 @@ class Reservaciones extends Model
 {
     /** @use HasFactory<\Database\Factories\ReservacionesFactory> */
     use HasFactory;
+    // Relación N:N
+    public function rervacion(){
+        return $this->belongsToMany(Reservaciones::class);
+    }
 }
