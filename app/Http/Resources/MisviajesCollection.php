@@ -2,10 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Misviajes;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class CategoriaCollection extends ResourceCollection
+class MisviajesCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -15,15 +16,16 @@ class CategoriaCollection extends ResourceCollection
     public function toArray(Request $request): array
     {
         return parent::toArray($request);
-                return $this->collection->map(function ($categoria) {  // Mapear cada categoria en la colección y estructurarla
+                return $this->collection->map(function ($Misviajes) {  // Mapear cada categoria en la colección y estructurarla
             return [
-                'id' => $categoria->id,
+                'id' => $Misviajes->id,
                 'tipo' => 'categoria',
                 'atributos' => [
-                    'nombre' => $categoria->nombre,
+                    'nombre' => $Misviajes->nombre,
                 ],
             ];
         })->toArray(); // Convertir la colección mapeada a un array
     
     }
 }
+

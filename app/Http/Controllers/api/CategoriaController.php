@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Categoria;
 use App\Http\Resources\CategoriaResource;
 use App\Http\Resources\CategoriaCollection;
-use Symfony\Component\HttpFoundation\Response;
+
 
 class CategoriaController extends Controller
 {
@@ -19,7 +19,7 @@ class CategoriaController extends Controller
     // Muestra una categoria a partir de su id
     public function show(Categoria $categoria){
         // return $categoria; // Devuelve la categoria
-        $categoria = $categoria->load('destino');  // Carga las recetas relacionadas con la categoria
+        $categoria = $categoria->load('destino');  // Carga los destinos relacionadas con la categoria
         return new CategoriaResource($categoria);  // Devuelve la categoria como recurso API 
     }
 
