@@ -16,3 +16,4 @@ Route::apiResource("misviajes", CategoriaController::class);
 Route::apiResource("paquetes", CategoriaController::class);
 // Rutas de reservaciones 
 Route::apiResource("reservaciones", CategoriaController::class);
+

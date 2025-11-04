@@ -15,12 +15,12 @@ class ComentarioCollection extends ResourceCollection
     public function toArray(Request $request): array
     {
         return parent::toArray($request);
-                return $this->collection->map(function ($comentario) {  // Mapear cada comentarios 
+                return $this->collection->map(function ($categoria) {  // Mapear cada comentarios 
             return [
-                'id' => $comentario->id,
+                'id' => $categoria->id,
                 'tipo' => 'categoria',
                 'atributos' => [
-                    'nombre' => $comentario->nombre,
+                    'nombre' => $categoria->nombre,
                 ],
             ];
         })->toArray(); // Convertir la colección mapeada a un array
