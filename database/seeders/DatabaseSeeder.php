@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Yuleisi Barrera Castro',
+            'email' => 'Yuleisi@laravel.com',
         ]);
         User::factory(29)->create();
         Categorias::factory(10)->create();
