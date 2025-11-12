@@ -5,7 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DestinoCollection;
 use App\Models\Destinos;
-use App\Http\Resources\DestinoResource;  // Importar el recurso RecetasResource
+use App\Http\Resources\DestinoResource;  // Importar el recurso DestinoResource
 use App\Http\Requests\StoreDestinoRequest;  // Importar la request StoreDestinoRequest
 use App\Http\Requests\UpdateDestinoRequest; // Importar la request UpdateDestinoRequest
 use Symfony\Component\HttpFoundation\Response; // Importar la clase Response para los códigos de estado HTTP

@@ -11,6 +11,8 @@ class Destinos extends Model
     use HasFactory;
 
 protected $fillable= [ //Campos que se pueden asignar masivamente
+    'categoria_id',
+        // 'user_id',  // Se asigna automáticamente en el controlador con el usuario logueado 
         'nombre',
         'descripcion',
         'ubicacion',
