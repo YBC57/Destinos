@@ -15,6 +15,6 @@ protected $fillable= [ //Campos que se pueden asignar masivamente
 
     // Una Categoria puede tener muchos Destinos y un Destinos puede tener muchas Categorias
     public function destino(){
-        return $this->belongsToMany(Categoria::class);
+        return $this->belongsToMany(Categorias::class);
     }
 }

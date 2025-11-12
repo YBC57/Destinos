@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Factories\Factory; // importar la clase Factory
 use Illuminate\Support\Facades\Hash; // Para hashear contraseñas
 use Illuminate\Support\Str; // Para generar cadenas aleatorias
 
-use App\Models\Categorias;
-use App\Models\Comentarios;
-use App\Models\Destinos;
-use App\Models\Misviajes;
-use App\Models\Paquetes;
-use App\Models\Reservaciones;
-use App\Models\User;
+use App\Models\User;// importar el modelo User
+use App\Models\Categorias;// importar el modelo Categorias
+use App\Models\Comentarios;// importar el modelo UseComentariosr
+use App\Models\Destinos;// importar el modelo Destinos
+use App\Models\Misviajes;// importar el modelo Misviajes
+use App\Models\Paquetes;// importar el modelo Paquetes
+use App\Models\Reservaciones;// importar el modelo Reservaciones
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -23,29 +24,45 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+      $this->call(RolSeeder::class);  // Llamar al seeder de roles
 
         User::factory()->create([
             'name' => 'Yuleisi Barrera Castro',
             'email' => 'Yuleisi@laravel.com',
-        ]);
-        User::factory(29)->create();
-        Categorias::factory(10)->create();
-        Comentarios::factory(100)->create();
-        Paquetes::factory(40)->create();
+        ])-> assignRole('Administrador');  // Asignar rol de Administrador al usuario creado
+
+        User::factory()->create([
+            'name' => 'Iraic Alcantar',
+            'email' => 'iraic@gmail.com',
+        ])-> assignRole('Editor');  // Asignar rol de Editor al usuario Iraic
+
+
+        User::factory(29)->create()->each(function ($user) {
+            $user->assignRole('Usuario');
+        });  // Crear 29 usuarios y les asigna el rol de Usuario
+
+       // User::factory(10)->create();
+        Categorias::factory(5)->create();
+        Comentarios::factory(10)->create();
+        Paquetes::factory(3)->create();
         Destinos::factory(40)->create();
-        Misviajes::factory(40)->create();
-        Reservaciones::factory(40)->create();
+        Misviajes::factory(30)->create();
+        Reservaciones::factory(30)->create();
 
 
         // Relación muchos a muchos
-       // $recetas = Receta::all();
-        //$etiquetas = Etiqueta::all();
+       $destinos = Destinos::all();
+       $reservacion = Reservaciones::all();
+       $categorias = Categorias::all();
 
         // Asignar entre 2 y 4 etiquetas aleatorias a cada receta
         // attach() agrega registros a la tabla intermedia sin eliminar los existentes 
-       // foreach ($recetas as $receta) {
-           // $receta->etiquetas()->attach($etiquetas->random(rand(2, 4)));
-       // }
+       foreach ($destinos as $destinos) {
+            $destinos->reservaciones()->attach($reservacion->random(rand(2, 4)));
+        }
+
+         foreach ($destinos as $destinos) {
+            $destinos->categorias()->attach($categorias->random(rand(2, 4)));
+        }
     }
 }

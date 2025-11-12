@@ -21,8 +21,19 @@ protected $fillable= [ //Campos que se pueden asignar masivamente
         'fecha_fin',
     ];
 
-    // Una receta puede tener muchas etiquetas y una etiqueta puede tener muchas recetas
+    // Una destino puede tener muchas reservaciones y una reservacion puede tener muchas destinos
     public function destinos(){
         return $this->belongsToMany(Destinos::class);
+    }
+
+    // Una destino puede tener muchas reservaciones y una reservacion puede tener muchas destinos
+    public function categoria(){
+        return $this->belongsToMany(Categorias::class);
+ 
+    }
+
+    // Una destino pertenece a un usuario
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }
