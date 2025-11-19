@@ -20,7 +20,7 @@ class DestinoResource extends JsonResource
                 'tipo' => 'categoria',
                 'atributos' => [
                     'nombre' => $categoria->nombre,
-                    'descripcion' => $categoria->descripcion,
+                    'descripcion' => $categoria ->descripcion,
                 ],
             ];
     }

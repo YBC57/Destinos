@@ -20,15 +20,15 @@ class DestinoController extends Controller
     // Muestra todas las recetas
     public function index(){
         $this->authorize('Ver destinos');  
-        $destinos = Destinos::with('categoria', 'etiquetas', 'user')->get();
+        $destinos = Destinos::with('categoria', 'user')->get();
         return DestinoResource::collection($destinos); // Devuelve todas las recetas como recurso API
     }
 
     // Muestra una receta a partir de su id
-    public function show(Destinos $destinos){
+    public function show(Destinos $destino){
         $this->authorize('Ver destinos');  
-        $destinos = $destinos->load('categoria', 'etiquetas', 'user');
-        return new DestinoResource($destinos); // Devuelve la receta como recurso API 
+        $destino = $destino->load('categoria', 'user');
+        return new DestinoResource($destino); // Devuelve la receta como recurso API 
     }
 
     // Almacena una nueva receta 
@@ -38,7 +38,7 @@ class DestinoController extends Controller
         $destino = $request->user()->destinos()->create($request->all());  // Crear una nueva receta asociada al usuario autenticado
         $destino->etiquetas()->attach(json_decode($request->etiquetas));  // Asociar las etiquetas a la receta (decodificar el JSON recibido)
 
-        $destino->imagen = $request->file('imagen')->store('recetas','public'); // Almacenar la imagen en el disco 'public' dentro de la carpeta 'recetas'
+        $destino->imagen = $request->file('imagen')->store('destinos','public'); // Almacenar la imagen en el disco 'public' dentro de la carpeta 'recetas'
         $destino->save(); // Guardar la receta con la ruta de la imagen
  
         // Devolver la receta creada como recurso API con código de estado 201 (creado) 

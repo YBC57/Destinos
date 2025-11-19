@@ -32,9 +32,9 @@ class DatabaseSeeder extends Seeder
         ])-> assignRole('Administrador');  // Asignar rol de Administrador al usuario creado
 
         User::factory()->create([
-            'name' => 'Iraic Alcantar',
-            'email' => 'iraic@gmail.com',
-        ])-> assignRole('Editor');  // Asignar rol de Editor al usuario Iraic
+            'name' => 'Itzel Gudiño Garcia',
+            'email' => 'itzel@gmail.com',
+        ])-> assignRole('Editor');  // Asignar rol de Editor al usuario Itzel
 
 
         User::factory(29)->create()->each(function ($user) {
@@ -42,27 +42,27 @@ class DatabaseSeeder extends Seeder
         });  // Crear 29 usuarios y les asigna el rol de Usuario
 
        // User::factory(10)->create();
-        Categorias::factory(5)->create();
+        Categorias::factory(10)->create();
         Comentarios::factory(10)->create();
         Paquetes::factory(3)->create();
-        Destinos::factory(40)->create();
+        Destinos::factory(30)->create();
         Misviajes::factory(30)->create();
         Reservaciones::factory(30)->create();
 
 
         // Relación muchos a muchos
        $destinos = Destinos::all();
-       $reservacion = Reservaciones::all();
+      // $reservacion = Reservaciones::all();
        $categorias = Categorias::all();
 
         // Asignar entre 2 y 4 etiquetas aleatorias a cada receta
         // attach() agrega registros a la tabla intermedia sin eliminar los existentes 
-       foreach ($destinos as $destinos) {
-            $destinos->reservaciones()->attach($reservacion->random(rand(2, 4)));
-        }
+       //foreach ($destinos as $destinos) {
+           // $destinos->reservaciones()->attach($reservacion->random(rand(2, 4)));
+        //}
 
-         foreach ($destinos as $destinos) {
-            $destinos->categorias()->attach($categorias->random(rand(2, 4)));
+        foreach ($destinos as $destino) {
+            $destino->categoria()->attach($categorias->random(rand(2, 4)));
         }
     }
 }
