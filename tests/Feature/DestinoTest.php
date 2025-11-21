@@ -88,7 +88,7 @@ test('store', function () {  // Crea una nueva receta
     ];
 
     $response = $this->postJson('/api/destinos/', $data);  // Realiza una solicitud POST a la ruta /api/destinos
-   dd($response->json());
+  // dd($response->json());
 
     $response->assertStatus(Response::HTTP_CREATED);  // Verificar que el estado de la respuesta sea 201 Created
 
@@ -101,10 +101,11 @@ test('update', function () {
     // Ejecuta el seeder de roles
     $this->artisan('db:seed', ['--class' => 'RolSeeder']);
 
-    $usuario = Sanctum::actingAs(User::factory()->create()->assignRole('Editor'));  // Simula un usuario autenticado con el rol de Administrador
-
+$usuario = User::factory()->create()->assignRole('Editor');// Simula un usuario autenticado con el rol de Editor
+    Sanctum::actingAs($usuario);
     $categoria = categorias::factory()->create();  // Crear una categoría para la receta
-    $destino = Destinos::factory()->create();  // Crear una destino
+    $destino = Destinos::factory()->create(['user_id' => $usuario->id]);
+      // Crear una destino
 
     $data = [   // Datos actualizados de la destino
         'categoria_id' => $categoria->id,
@@ -130,11 +131,13 @@ test('update', function () {
 test('destroy', function () {  // Elimina una receta
     $this->artisan('db:seed', ['--class' => 'RolSeeder']);
 
-    Sanctum::actingAs(User::factory()->create()->assignRole('Administrador'));  // Simula un usuario autenticado con el rol de Administrador
+    $usuario = User::factory()->create()->assignRole('Administrador');
+     
+    Sanctum::actingAs($usuario);  // Simula un usuario autenticado con el rol de Administrador
 
     categorias::factory()->create();  // Crear una categoría para la receta
 
-    $destino = Destinos::factory()->create();  // Crear una receta
+    $destino = Destinos::factory()->create(['user_id' => $usuario->id]);  // Crear una receta
 
     $response = $this->deleteJson("/api/destinos/{$destino->id}");  // Realiza una solicitud DELETE a la ruta /api/recetas/{id}
 

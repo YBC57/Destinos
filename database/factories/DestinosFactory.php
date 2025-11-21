@@ -17,9 +17,9 @@ class DestinosFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_id' => \App\Models\User::factory(),
             'nombre' => fake()->text(), // sentence genera una frase aleatoria
             'descripcion' => fake()->text(), // text genera un texto aleatorio
-            'ubicacion' => fake()->text(), 
             'precio' => fake()->numerify('###.##'), // genera un número con formato de precio como cadena
             'fecha_inicio' => $this->faker->date('Y-m-d'), // formato string
             'imagen' => fake()->imageUrl(640, 480), // imageUrl genera una URL de imagen aleatoria//
