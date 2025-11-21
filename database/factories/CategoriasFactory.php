@@ -18,6 +18,7 @@ class CategoriasFactory extends Factory
     {
         return [
             'nombre' => ucfirst(fake()->word()), // Nombre de la categoria, ucfirst para que la primera letra sea mayuscula
+            
         ];
     }
 }

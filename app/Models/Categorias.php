@@ -10,7 +10,7 @@ class Categorias extends Model
     /** @use HasFactory<\Database\Factories\CategoriasFactory> */
     use HasFactory;
 protected $fillable= [ //Campos que se pueden asignar masivamente
-        'nombre',
+        'nombre', 
     ];
 
     // Una Categoria puede tener muchos Destinos y un Destinos puede tener muchas Categorias

@@ -25,7 +25,7 @@ class UpdateDestinoRequest extends FormRequest
             'categoria_id' => 'sometimes|exists:categorias,id', // La categoria_id es opcional y debe existir en la tabla categorias
             'nombre' => 'sometimes|string|max:255', // El titulo es opcional, debe ser una cadena y no debe exceder los 255 caracteres
             'descripcion' => 'sometimes|string', // La descripcion es opcional y debe ser una cadena
-            'precio' => 'sometimes|int', // Los ingredientes son opcionales y deben ser una cadena
+            'precio' => 'sometimes|string', // Los ingredientes son opcionales y deben ser una cadena
             'fecha_inicio' => 'sometimes|string', // Las instrucciones son opcionales y deben ser una cadena
             'imagen' => 'sometimes|mimes:webp,jpeg,png,jpg,gif,svg|max:2048', // La imagen es opcional, debe ser un archivo de imagen y no debe exceder los 2MB
         ];

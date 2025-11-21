@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('destinos', function (Blueprint $table) {
-            $table->id();      
-            $table->string('nombre');
-            $table->string('descripcion');
-            $table->string('ubicacion');
-            $table->double('precio');
-            $table->date('fecha_inicio');
-            $table->date('fecha_fin');
-            $table->string('imagen')->nullable;
-            $table->timestamps();
+           $table->id();
+$table->unsignedBigInteger('user_id'); // Relación con usuarios
+$table->string('nombre');
+$table->string('descripcion');
+$table->string('precio');
+$table->date('fecha_inicio');
+$table->string('imagen')->nullable(); // Corregido
+$table->timestamps();
+$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -28,6 +28,7 @@ return new class extends Migration
      * Reverse the migrations.
      */
     public function down(): void
+    
     {
         Schema::dropIfExists('destinos');
     }

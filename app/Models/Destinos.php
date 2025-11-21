@@ -11,24 +11,23 @@ class Destinos extends Model
     use HasFactory;
 
 protected $fillable= [ //Campos que se pueden asignar masivamente
+    'user_id',// Se asigna automáticamente en el controlador con el usuario logueado 
     'categoria_id',
-        // 'user_id',  // Se asigna automáticamente en el controlador con el usuario logueado 
         'nombre',
         'descripcion',
-        'ubicacion',
         'precio',
         'fecha_inicio',
-        'fecha_fin',
+        'imagen',
     ];
 
     // Una destino puede tener muchas reservaciones y una reservacion puede tener muchas destinos
-    public function destinos(){
-        return $this->belongsToMany(Destinos::class);
-    }
+    //public function destinos(){
+        //return $this->belongsToMany(Destinos::class);
+   // }
 
     // Una destino puede tener muchas reservaciones y una reservacion puede tener muchas destinos
     public function categoria(){
-        return $this->belongsToMany(Categorias::class);
+        return $this->belongsTo(Categorias::class);
  
     }
 

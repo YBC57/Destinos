@@ -13,15 +13,14 @@ class DestinoResource extends JsonResource
      * @return array<string, mixed>
      */
     public function toArray(Request $request): array
-    {
-        return parent::toArray($request);
-        return [
-                'id' => $categoria->id,
-                'tipo' => 'categoria',
-                'atributos' => [
-                    'nombre' => $categoria->nombre,
-                    'descripcion' => $categoria ->descripcion,
-                ],
-            ];
-    }
+{
+    return [
+        'id' => $this->id,
+        'tipo' => 'destino',
+        'atributos' => [
+            'nombre' => $this->nombre,
+            'descripcion' => $this->descripcion,
+        ],
+    ];
+}
 }

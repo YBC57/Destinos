@@ -17,14 +17,18 @@ class DestinoController extends Controller
 {
     use AuthorizesRequests; // Usar el trait AuthorizesRequests para la autorización de políticas
 
-    // Muestra todas las recetas
+    
+
+    // Muestra todos los destinos
     public function index(){
         $this->authorize('Ver destinos');  
         $destinos = Destinos::with('categoria', 'user')->get();
         return DestinoResource::collection($destinos); // Devuelve todas las recetas como recurso API
     }
 
-    // Muestra una receta a partir de su id
+
+
+    // Muestra un destino a partir de su id
     public function show(Destinos $destino){
         $this->authorize('Ver destinos');  
         $destino = $destino->load('categoria', 'user');
@@ -36,7 +40,7 @@ class DestinoController extends Controller
         $this->authorize('Crear destinos');  
        
         $destino = $request->user()->destinos()->create($request->all());  // Crear una nueva receta asociada al usuario autenticado
-        $destino->etiquetas()->attach(json_decode($request->etiquetas));  // Asociar las etiquetas a la receta (decodificar el JSON recibido)
+        //$destino->etiquetas()->attach(json_decode($request->etiquetas));  // Asociar las etiquetas a la receta (decodificar el JSON recibido)
 
         $destino->imagen = $request->file('imagen')->store('destinos','public'); // Almacenar la imagen en el disco 'public' dentro de la carpeta 'recetas'
         $destino->save(); // Guardar la receta con la ruta de la imagen
@@ -45,7 +49,7 @@ class DestinoController extends Controller
         return response()->json(new DestinoResource($destino), Response::HTTP_CREATED); 
     }
 
-    // Actualiza una receta existente
+    // Actualiza una destino existente
     public function update(UpdateDestinoRequest $request, Destinos $destino){  // Usar la request UpdateRecetasRequest para validar los datos
         $this->authorize('Editar destinos');
 
