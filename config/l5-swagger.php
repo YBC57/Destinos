@@ -170,6 +170,41 @@ return [
         */
         'securityDefinitions' => [
             'securitySchemes' => [
+
+                'bearer_token' => [ 
+
+                    'type' => 'http',
+
+                    'scheme' => 'bearer',
+                    'bearerFormat' => 'JWT',
+                    'description' => 'Bearer token en el header Authorization',
+                ],
+            ],
+            'security' => [
+                [
+                    'bearer_token' => [],
+                ],
+
+               /*
+
+
+                // Sanctum Authentication 
+
+                'bearer_token' => [ 
+
+                    'type' => 'apiKey',
+
+                    'description' => 'Sanctum bearer token',
+
+                    'name' => 'Authorization',
+
+                    'in' => 'header',
+
+                ],
+
+
+
+  
                 /*
                  * Examples of Security schemes
                  */

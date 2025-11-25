@@ -9,6 +9,41 @@ use Illuminate\Support\Facades\Hash;  // Para verificar contraseñas
 use Symfony\Component\HttpFoundation\Response;  // Para usar códigos de estado HTTP
 use App\Models\User;  // Importar el modelo User
 
+/**
+ * @OA\Post(
+ * path="/api/login",
+ * summary="Iniciar sesión de usuario",
+ * tags={"Autenticación"},
+ * @OA\RequestBody(
+ * required=true,
+ * description="Credenciales de usuario y nombre del dispositivo.",
+ * @OA\JsonContent(
+ * required={"correo", "contraseña", "dispositivo"},
+ * @OA\Property(property="correo", type="string", format="email", example="Yuleisi@laravel.com", description="Correo electrónico registrado."),
+ * @OA\Property(property="contraseña", type="string", format="password", example="password", description="Contraseña del usuario."),
+ * @OA\Property(property="dispositivo", type="string", example="Mi dispositivo", description="Nombre del dispositivo que solicita el token.")
+ * )
+ * ),
+ * @OA\Response(
+ * response=200,
+ * description="Inicio de sesión exitoso. Retorna los datos del usuario y el token de autenticación (no documentado aquí, pero implícito).",
+ * @OA\JsonContent(
+ * @OA\Property(property="id", type="integer", example=1),
+ * @OA\Property(property="nombre", type="string", example="Juan Pérez"),
+ * @OA\Property(property="correo", type="string", example="user@example.com")
+ * )
+ * ),
+ * @OA\Response(
+ * response=422,
+ * description="Credenciales incorrectas",
+ * @OA\JsonContent(
+ * @OA\Property(property="message", type="string", example="Las credenciales son incorrectas.")
+ * )
+ * )
+ * )
+ */
+
+
 class LoginController extends Controller
 {
    public function store(Request $request)

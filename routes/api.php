@@ -10,11 +10,15 @@ use App\Http\Controllers\Api\MisviajesController;
 use App\Http\Controllers\Api\PaqueteController;
 use App\Http\Controllers\Api\ReservacionController;
 use App\Http\Controllers\Api\LoginController;
-//use App\Models\Misviajes;
-//use App\Models\Paquetes;
-//use App\Models\Reservaciones;
 
 Route::post('login', [LoginController::class, 'store']);  // Ruta para el login
+
+// Esto ayuda a evitar problemas de CORS en aplicaciones web que consumen esta API 
+Route::options('{all:.*}', function(){
+    return response()->json();
+});
+
+// Rutas protegidas por autenticación 
 Route::middleware('auth:sanctum')->group(function () {  
     Route::apiResource('categorias', CategoriaController::class);  // Rutas de categorias
     Route::apiResource('comentarios', ComentarioController::class);  // Rutas de comentarios

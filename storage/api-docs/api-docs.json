@@ -1,0 +1,348 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000"
+        }
+    ],
+    "paths": {
+        "/api/destinos": {
+            "get": {
+                "tags": [
+                    "Destinos"
+                ],
+                "summary": "Obtener todos los destinos",
+                "operationId": "9c34a9642b059e2137a843e56d1e48fa",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "No se encontraron destinos"
+                    },
+                    "405": {
+                        "description": "Método no permitido"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Destinos"
+                ],
+                "summary": "Crear un nuevo destino",
+                "operationId": "af7f06c1dd037e0df13cf0f66e5640d1",
+                "requestBody": {
+                    "description": "Datos de la nueva receta.",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "categoria_id",
+                                    "nombre",
+                                    "descripcion",
+                                    "precio",
+                                    "fecha_inicio"
+                                ],
+                                "properties": {
+                                    "categoria_id": {
+                                        "description": "ID de la categoría.",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "nombre": {
+                                        "type": "string",
+                                        "example": "Destino de Tacos al Pastor"
+                                    },
+                                    "descripcion": {
+                                        "type": "string",
+                                        "example": "Descripción del destino."
+                                    },
+                                    "precio": {
+                                        "type": "string",
+                                        "example": "Lista de precio."
+                                    },
+                                    "fecha_inicio": {
+                                        "type": "string",
+                                        "example": "Pasos de preparación."
+                                    },
+                                    "imagen": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Destino creado exitosamente."
+                    },
+                    "400": {
+                        "description": "Solicitud inválida."
+                    },
+                    "403": {
+                        "description": "No autorizado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/destinos/{id}": {
+            "get": {
+                "tags": [
+                    "Destinos"
+                ],
+                "summary": "Obtener una destino por ID",
+                "operationId": "2a81091b8e50b40da7af4959c97dab4f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del destino a recuperar.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Destino encontrado."
+                    },
+                    "404": {
+                        "description": "Destino no encontrado."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/destinos/{destino}": {
+            "put": {
+                "tags": [
+                    "Destinos"
+                ],
+                "summary": "Actualizar destino",
+                "operationId": "0fc8ba3fd6c1d56e64f0805a1c0ea42d",
+                "parameters": [
+                    {
+                        "name": "destino",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "categoria_id": {
+                                        "type": "integer"
+                                    },
+                                    "nombre": {
+                                        "type": "string"
+                                    },
+                                    "descripcion": {
+                                        "type": "string"
+                                    },
+                                    "precio": {
+                                        "type": "string"
+                                    },
+                                    "fecha_inicio": {
+                                        "type": "string"
+                                    },
+                                    "imagen": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Destino actualizada"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "Destino no encontrada"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Destinos"
+                ],
+                "summary": "Eliminar destino",
+                "operationId": "298e6c4b3fc3e1f505941db8c7d9a8f5",
+                "parameters": [
+                    {
+                        "name": "destino",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Destino eliminado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "Destino no encontrado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Iniciar sesión de usuario",
+                "operationId": "e32a2d003f11300b69b29d2c5bfc7351",
+                "requestBody": {
+                    "description": "Credenciales de usuario y nombre del dispositivo.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "correo",
+                                    "contraseña",
+                                    "dispositivo"
+                                ],
+                                "properties": {
+                                    "correo": {
+                                        "description": "Correo electrónico registrado.",
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "Yuleisi@laravel.com"
+                                    },
+                                    "contraseña": {
+                                        "description": "Contraseña del usuario.",
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    },
+                                    "dispositivo": {
+                                        "description": "Nombre del dispositivo que solicita el token.",
+                                        "type": "string",
+                                        "example": "Mi dispositivo"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Inicio de sesión exitoso. Retorna los datos del usuario y el token de autenticación (no documentado aquí, pero implícito).",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "nombre": {
+                                            "type": "string",
+                                            "example": "Juan Pérez"
+                                        },
+                                        "correo": {
+                                            "type": "string",
+                                            "example": "user@example.com"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Credenciales incorrectas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Las credenciales son incorrectas."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearer_token": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "description": "Bearer token en el header Authorization"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Destinos",
+            "description": "Destinos"
+        },
+        {
+            "name": "Autenticación",
+            "description": "Autenticación"
+        }
+    ]
+}
