@@ -74,10 +74,10 @@ class DestinoController extends Controller
  * path="/api/destinos",
  * summary="Crear un nuevo destino",
  * tags={"Destinos"},
- * security={{"bearer_token": {}}},
+  * security={{"bearer_token": {}}},
  * @OA\RequestBody(
  * required=true,
- * description="Datos de la nueva receta.",
+ * description="Datos del nuevo destino",
  * @OA\MediaType(
  * mediaType="multipart/form-data",
  * @OA\Schema(

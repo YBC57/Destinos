@@ -17,8 +17,8 @@ $table->unsignedBigInteger('user_id'); // Relación con usuarios
 $table->string('nombre');
 $table->string('descripcion');
 $table->string('precio');
-$table->date('fecha_inicio');
-$table->string('imagen')->nullable(); // Corregido
+$table->string('fecha_inicio');
+$table->string('imagen')->nullable; // Corregido
 $table->timestamps();
 $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

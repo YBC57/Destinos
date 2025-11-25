@@ -44,7 +44,7 @@
                 "summary": "Crear un nuevo destino",
                 "operationId": "af7f06c1dd037e0df13cf0f66e5640d1",
                 "requestBody": {
-                    "description": "Datos de la nueva receta.",
+                    "description": "Datos del nuevo destino",
                     "required": true,
                     "content": {
                         "multipart/form-data": {
