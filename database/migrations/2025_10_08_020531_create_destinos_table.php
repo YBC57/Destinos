@@ -16,8 +16,8 @@ return new class extends Migration
 $table->unsignedBigInteger('user_id'); // Relación con usuarios
 $table->string('nombre');
 $table->string('descripcion');
-$table->string('precio');
-$table->string('fecha_inicio');
+$table->string('precio');  // tipo corregido a string
+$table->string('fecha_inicio'); // tipo corregido a string
 $table->string('imagen')->nullable; // Corregido
 $table->timestamps();
 $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
